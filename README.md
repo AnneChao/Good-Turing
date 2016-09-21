@@ -1,1 +1,1 @@
-# Good-Turing-R-
+# Good-Turing (R)
