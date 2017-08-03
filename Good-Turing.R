@@ -1,5 +1,5 @@
 
-# Appendix S7 of Chao et al. (2016) "Deciphering the Enigma of Undetected Species, Phylogenetic, and Functional
+# Appendix S78 of Chao et al. (2016) "Deciphering the Enigma of Undetected Species, Phylogenetic, and Functional
 # Diversity Based on Good-Turing Theory". Manuscript submitted to Ecology.
 
 #### R scripts for estimating true species richness, phylogenetic diversity (PD) and FAD (functional attribute diversity) 
