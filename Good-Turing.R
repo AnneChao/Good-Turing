@@ -1,17 +1,17 @@
 #*******************************************************************************
 #********************************************************************************
-  ## R scipts "Good-Turing" for Chao et al. (2017) Ecology paper. 
-  ## Please cite the following Chao et al. (2017) paper to use these R scripts:
-  ## Chao, A, Chiu, C.-H., Colwell, R.K., Magnago, L.F.S., Chazdon,R.L. and Gotelli, N. J. (2017) 
-  ## Deciphering the Enigma of Undetected Species, Phylogenetic, and Functional Diversity Based on Good-Turing Theory. Ecology.
-  #
-  # The following R scripts include 6 parts:
-  # (1). Script for estimating species richness for each individual assemblage (Table 2(a) of Chao et al. 2017 paper)
-  # (2). Script for estimating shared species richness between two assemblages (Table 2(b) of Chao et al. 2017 paper
-  # (3). Script for estimating Faith PD for each individual assemblage (Table 3(a) of Chao et al. 2017 paper)
-  # (4). Script for estimating shared PD between two assemblages (Table 3(b) of Chao et al. 2017 paper)
-  # (5). Script for estimating FAD for each individual assemblage (Table 4(a) of Chao et al. 2017 paper)
-  # (6). Script for estimating shared FAD between two assemblages (Table 4(b) of Chao et al. 2017 paper)
+## R scipts "Good-Turing" for Chao et al. (2017) Ecology paper. 
+## Please cite the following Chao et al. (2017) paper to use these R scripts:
+## Chao, A, Chiu, C.-H., Colwell, R.K., Magnago, L.F.S., Chazdon,R.L. and Gotelli, N. J. (2017) 
+## Deciphering the Enigma of Undetected Species, Phylogenetic, and Functional Diversity Based on Good-Turing Theory. Ecology.
+#
+# The following R scripts include 6 parts:
+# (1). Script for estimating species richness for each individual assemblage (Table 2(a) of Chao et al. 2017 paper)
+# (2). Script for estimating shared species richness between two assemblages (Table 2(b) of Chao et al. 2017 paper
+# (3). Script for estimating Faith PD for each individual assemblage (Table 3(a) of Chao et al. 2017 paper)
+# (4). Script for estimating shared PD between two assemblages (Table 3(b) of Chao et al. 2017 paper)
+# (5). Script for estimating FAD for each individual assemblage (Table 4(a) of Chao et al. 2017 paper)
+# (6). Script for estimating shared FAD between two assemblages (Table 4(b) of Chao et al. 2017 paper)
 # 
 # NOTE: The packages "ade4", "phytools", "ape" and "knitr" must be installed and loaded before running the scripts. 
 # These four packages can be downloaded from CRAN.
@@ -263,7 +263,7 @@ FAD <- function(data, dis_matrix) {
   ans <- apply(data,2, function(K) {
     #names(da) <- rownames(data)
     names(K) <- rownames(data)
-    Good_Turing_FD(as.matrix(dis), K)
+    Good_Turing_FD(as.matrix(dis_matrix), K)
   })
   
   kable(t(as.data.frame(ans)))
@@ -540,7 +540,7 @@ Shared_FAD=function(data,dis_matrix){
   da1=data[,1];da2=data[,2];
   n1=sum(da1);n2=sum(da2);
   I=which(da1*da2>0);
-  obsfd12=sum(dis[I,I]);
+  obsfd12=sum(dis_matrix[I,I]);
   share = shared.FAD(data, dis_matrix)
   sfd12=share$FAD12;
   ufd12=max(0,sfd12-obsfd12);
