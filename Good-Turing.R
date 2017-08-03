@@ -5,13 +5,13 @@
 ## Chao, A, Chiu, C.-H., Colwell, R.K., Magnago, L.F.S., Chazdon,R.L. and Gotelli, N. J. (2017) 
 ## Deciphering the Enigma of Undetected Species, Phylogenetic, and Functional Diversity Based on Good-Turing Theory. Ecology.
 #
-# The following R scripts include 6 parts:
-# (1). Script for estimating species richness for each individual assemblage (Table 2(a) of Chao et al. 2017 paper)
-# (2). Script for estimating shared species richness between two assemblages (Table 2(b) of Chao et al. 2017 paper
-# (3). Script for estimating Faith PD for each individual assemblage (Table 3(a) of Chao et al. 2017 paper)
-# (4). Script for estimating shared PD between two assemblages (Table 3(b) of Chao et al. 2017 paper)
-# (5). Script for estimating FAD for each individual assemblage (Table 4(a) of Chao et al. 2017 paper)
-# (6). Script for estimating shared FAD between two assemblages (Table 4(b) of Chao et al. 2017 paper)
+# The following R scripts include 6 parts:  
+# (1). Script for estimating species richness for each individual assemblage.
+# (2). Script for estimating shared species richness between two assemblages.
+# (3). Script for estimating Faith PD for each individual assemblage. 
+# (4). Script for estimating shared PD between two assemblages. 
+# (5). Script for estimating FAD for each individual assemblage. 
+# (6). Script for estimating shared FAD between two assemblages.
 # 
 # NOTE: The packages "ade4", "phytools", "ape" and "knitr" must be installed and loaded before running the scripts. 
 # These four packages can be downloaded from CRAN.
@@ -29,7 +29,7 @@
 
 #' Estimating species richness in one assemblage
 #' Richness(data) is a function of obtaining estimator of species richness in one assemblage based on abundance data.
-#' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages is allowed to be any positive integer.
+#' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages can be any positive integer.
 #' @return the Chao1 species richness estimate and its 95% confidence interval.
 
 Richness <- function(data){
@@ -108,7 +108,7 @@ Shared_richness <- function(data){
 
 #' Estimating Faith PD in one assemblage
 #' PD(data, tree) is a function of obtaining estimator of Faith PD based on abundance data.
-#' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages is allowed to be any positive integer.
+#' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages can be any positive integer.
 #' @param tree is in the Newick format of the phylogenetic tree spanned by the observed species in data.
 #' @return the Chao1-PD estimate and its 95% confidence interval.
 
@@ -223,7 +223,7 @@ Shared_PD=function(data, tree){
 
 #' Estimating FAD in one assemblage
 #' FAD(data, dis_matrix) is a function of obtaining estimator of FAD based on abundance data.
-#' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages is allowed to be any positive integer.
+#' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages can be any positive integer.
 #' @param dis_matrix is functional distance matrix of pairs of observed species.
 #' @return the Chao1-FAD estimate and its 95% confidence interval.
 
