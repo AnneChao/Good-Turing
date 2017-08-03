@@ -1,18 +1,17 @@
-
-# Appendix S7 of Chao et al. (2016) "Deciphering the Enigma of Undetected Species, Phylogenetic, and Functional
-# Diversity Based on Good-Turing Theory". Manuscript submitted to Ecology.
-  ## R scipts for Chao et al. (2017) Ecology paper. 
+#*******************************************************************************
+#********************************************************************************
+  ## R scipts "Good-Turing" for Chao et al. (2017) Ecology paper. 
   ## Please cite the following Chao et al. (2017) paper to use these R scripts:
   ## Chao, A, Chiu, C.-H., Colwell, R.K., Magnago, L.F.S., Chazdon,R.L. and Gotelli, N. J. (2017) 
   ## Deciphering the Enigma of Undetected Species, Phylogenetic, and Functional Diversity Based on Good-Turing Theory. Ecology.
   #
   # The following R scripts include 6 parts:
-  # (1).  Script for estimating species richness in one assemblage (Table 2(a) of Chao et al. 2017 paper)
-  # (2).  Script for estimating shared species richness between two assemblages (Table 2(b) of Chao et al. 2017 paper
-  # (3).  Script for estimating Faith PD in one assemblage (Table 3(a) of Chao et al. 2017 paper)
-  # (4).  Script for estimating shared PD between two assemblages (Table 3(b) of Chao et al. 2017 paper)
-  # (5).  Script for estimating FAD in one assemblage (Table 4(a) of Chao et al. 2017 paper)
-  # (6).  Script for estimating shared FAD between two assemblages (Table 4(b) of Chao et al. 2017 paper)
+  # (1). Script for estimating species richness for each individual assemblage (Table 2(a) of Chao et al. 2017 paper)
+  # (2). Script for estimating shared species richness between two assemblages (Table 2(b) of Chao et al. 2017 paper
+  # (3). Script for estimating Faith PD for each individual assemblage (Table 3(a) of Chao et al. 2017 paper)
+  # (4). Script for estimating shared PD between two assemblages (Table 3(b) of Chao et al. 2017 paper)
+  # (5). Script for estimating FAD for each individual assemblage (Table 4(a) of Chao et al. 2017 paper)
+  # (6). Script for estimating shared FAD between two assemblages (Table 4(b) of Chao et al. 2017 paper)
 # 
 # NOTE: The packages "ade4", "phytools", "ape" and "knitr" must be installed and loaded before running the scripts. 
 # These three packages can be downloaded from CRAN.
@@ -30,7 +29,7 @@
 
 #' Estimating species richness in one assemblage
 #' Richness(data) is a function of obtaining estimator of species richness in one assemblage based on abundance data.
-#' @param data is an observed species-by-assemblage frequency matrix.
+#' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages is allowed to be any positive integer.
 #' @return the Chao1 species richness estimate and its 95% confidence interval.
 
 Richness <- function(data){
@@ -59,13 +58,13 @@ Richness <- function(data){
 
 ##########################################################################################################
 #
-# (2).  R function for estimating shared species richness between two assemblages: Shared_richness (data)
+# (2).  R function for estimating shared species richness between two assemblages: Shared_richness(data)
 #
 ##########################################################################################################
 
 #' Estimating shared species richness between two assemblages
 #' Shared_richness(data) is a function of obtaining estimator of shared species richness between two assemblages based on abundance data.
-#' @param data is an observed species-by-assemblage frequency matrix.
+#' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages must be two.
 #' @return the Chao1-shared richness estimate and its 95% confidence interval.
 
 Shared_richness <- function(data){
@@ -109,8 +108,8 @@ Shared_richness <- function(data){
 
 #' Estimating Faith PD in one assemblage
 #' PD(data, tree) is a function of obtaining estimator of Faith PD based on abundance data.
-#' @param data is an observed species-by-assemblage frequency matrix.
-#' @param tree is in the Newick format of a phylogenetic tree.
+#' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages is allowed to be any positive integer.
+#' @param tree is in the Newick format of the phylogenetic tree spanned by the observed species in data.
 #' @return the Chao1-PD estimate and its 95% confidence interval.
 
 PD <- function(data, tree) {
@@ -143,7 +142,7 @@ PD <- function(data, tree) {
     pd.CI=round(c(obspd+upd/R,obspd+upd*R))
     #return(matrix(c(sum(abunDATA), g1, g2, obspd, upd, pd, pd.CI), nrow = 1))
     c("Sample size" = sum(data), g1 = g1, g2 = g2, "Observed" = obspd, 
-      "Undetected" = round(upd), "Chao1" = round(pd), 
+      "Undetected" = round(upd), "Chao1-PD" = round(pd), 
       "95% conf. interval" = paste0("(", pd.CI[1], ", ", pd.CI[2], ")"))
   }
   N <- ncol(data)
@@ -162,8 +161,8 @@ PD <- function(data, tree) {
 
 #' Shared PD between two assemblages
 #' Shared_PD(data, tree) is a function of obtaining estimator of shared PD between two assemblages based on abundance data.
-#' @param data is an observed species-by-assemblage frequency matrix.
-#' @param tree is in the Newick format of a phylogenetic tree.
+#' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages must be two.
+#' @param tree is in the Newick format of the phylogenetic tree spanned by the observed species in data.
 #' @return the Chao1-PD-shared estimate and its 95% confidence interval.
 
 Shared_PD=function(data, tree){
@@ -208,7 +207,7 @@ Shared_PD=function(data, tree){
   spd12.CI=c(obspd12+upd12/R,obspd12+upd12*R) 
   final <- c("Observed" = obspd12, "g+1" = g_1, "g+2" = g_2, "g1+" = g1_, "g2+" = g2_, g11 = g11, 
              g22 = g22, "g+0" = round(gp0h), "g0+" = round(g0ph), g00 = round(g00h), "Undetected" = round(upd12), 
-             "Chao1 shared" = round(spd12), "95% conf. interval" = paste0("(", round(spd12.CI[1]), ", ", round(spd12.CI[2]), ")"))
+             "Chao1-PD-shared" = round(spd12), "95% conf. interval" = paste0("(", round(spd12.CI[1]), ", ", round(spd12.CI[2]), ")"))
   
   kable(t(final))
 }
@@ -224,7 +223,7 @@ Shared_PD=function(data, tree){
 
 #' Estimating FAD in one assemblage
 #' FAD(data, dis_matrix) is a function of obtaining estimator of FAD based on abundance data.
-#' @param data is an observed species-by-assemblage frequency matrix.
+#' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages is allowed to be any positive integer.
 #' @param dis_matrix is functional distance matrix of pairs of observed species.
 #' @return the Chao1-FAD estimate and its 95% confidence interval.
 
@@ -257,7 +256,7 @@ FAD <- function(data, dis_matrix) {
     
     final <- c("Observed" = round(obsfd), "F+1" = round(F_1), "F+2" = round(F_2), 
                "F11" = round(F11), "F22" = round(F22),"F+0" = round(Fp0h), "F00" = round(F00h),
-               "Undetected" = round(ufd), "Chao1" = round(fd), 
+               "Undetected" = round(ufd), "Chao1-FAD" = round(fd), 
                "95% conf. interval" = paste0("(", round(fd.CI[1]), ", ", round(fd.CI[2]), ")"))
     final
   }
@@ -280,7 +279,7 @@ FAD <- function(data, dis_matrix) {
 
 #' Estimating shared FAD between two assemblages
 #' Shared_FAD(data, dis_matrix) is a function of obtaining estimator of shared FAD between two assemblages based on abundance data.
-#' @param data is an observed species-by-assemblage frequency matrix.
+#' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages must be two.
 #' @param dis_matrix is functional distance matrix of all pairs of observed species.
 #' @return the Chao1-FAD-shared estimate and its 95% confidence interval.
 
@@ -546,7 +545,7 @@ Shared_FAD=function(data,dis_matrix){
   sfd12=share$FAD12;
   ufd12=max(0,sfd12-obsfd12);
   o=EstBootCommTwoFun(dis_matrix, data)
-  boots=50;est=numeric(boots)
+  boots=200;est=numeric(boots)
   for(i in 1:boots){
     data1=rmultinom(1,size=n1,prob=o$p_boot[,1])
     data2=rmultinom(1,size=n1,prob=o$p_boot[,2])
@@ -565,7 +564,6 @@ Shared_FAD=function(data,dis_matrix){
   colnames(final) = c("Observed", "F(++)(00)", "F(++)(0+)", "F(00)(++)", 
                       "F(+0)(++)", "F(+0)(0+)", "F(+0)(00)", 
                       "F(+0)(+0)", "F(00)(+0)", "F(00)(00)", 
-                      "Undetected", "Chao 1", paste("95%", "CI"))
+                      "Undetected", "Chao1-FAD-shared", paste("95%", "CI"))
   kable(final)
 }
-########
