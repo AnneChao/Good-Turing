@@ -14,7 +14,7 @@
   # (6). Script for estimating shared FAD between two assemblages (Table 4(b) of Chao et al. 2017 paper)
 # 
 # NOTE: The packages "ade4", "phytools", "ape" and "knitr" must be installed and loaded before running the scripts. 
-# These three packages can be downloaded from CRAN.
+# These four packages can be downloaded from CRAN.
 #
 #*******************************************************************************
 #*******************************************************************************
