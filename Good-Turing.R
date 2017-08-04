@@ -6,12 +6,12 @@
 ## Deciphering the Enigma of Undetected Species, Phylogenetic, and Functional Diversity Based on Good-Turing Theory. Ecology.
 #
 # The following R scripts include 6 parts:  
-# (1). Script for estimating species richness for each individual assemblage.
-# (2). Script for estimating shared species richness between two assemblages.
-# (3). Script for estimating Faith PD for each individual assemblage. 
-# (4). Script for estimating shared PD between two assemblages. 
-# (5). Script for estimating FAD for each individual assemblage. 
-# (6). Script for estimating shared FAD between two assemblages.
+# (1). Script for estimating the species richness in each individual assemblage.
+# (2). Script for estimating the shared species richness between two assemblages.
+# (3). Script for estimating Faith's PD for each individual assemblage. 
+# (4). Script for estimating the shared PD between two assemblages. 
+# (5). Script for estimating the FAD in each individual assemblage. 
+# (6). Script for estimating the shared FAD between two assemblages.
 # 
 # NOTE: The packages "ade4", "phytools", "ape" and "knitr" must be installed and loaded before running the scripts. 
 # These four packages can be downloaded from CRAN.
@@ -23,12 +23,12 @@
 
 ####################################################################################
 #
-# (1).  R function for estimating species richness in one assemblage: Richness(data)
+# (1).  R function for estimating the species richness in each individual assemblage: Richness(data)
 #
 ####################################################################################
 
-#' Estimating species richness in one assemblage
-#' Richness(data) is a function of obtaining estimator of species richness in one assemblage based on abundance data.
+#' Estimating the species richness in each individual assemblage
+#' Richness(data) is a function of obtaining the estimator of species richness in each individual assemblage based on abundance data.
 #' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages can be any positive integer.
 #' @return the Chao1 species richness estimate and its 95% confidence interval.
 
@@ -58,12 +58,12 @@ Richness <- function(data){
 
 ##########################################################################################################
 #
-# (2).  R function for estimating shared species richness between two assemblages: Shared_richness(data)
+# (2).  R function for estimating the shared species richness between two assemblages: Shared_richness(data)
 #
 ##########################################################################################################
 
-#' Estimating shared species richness between two assemblages
-#' Shared_richness(data) is a function of obtaining estimator of shared species richness between two assemblages based on abundance data.
+#' Estimating the shared species richness between two assemblages
+#' Shared_richness(data) is a function of obtaining the estimator of shared species richness between two assemblages based on abundance data.
 #' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages must be two.
 #' @return the Chao1-shared richness estimate and its 95% confidence interval.
 
@@ -102,14 +102,14 @@ Shared_richness <- function(data){
 
 #################################################################################
 #
-# (3).  R function for estimating Faith PD in one assemblage: PD(data, tree)
+# (3).  R function for estimating Faith's PD in each individual assemblage: PD(data, tree)
 #
 #################################################################################
 
-#' Estimating Faith PD in one assemblage
-#' PD(data, tree) is a function of obtaining estimator of Faith PD based on abundance data.
+#' Estimating Fait's PD in each individual assemblage
+#' PD(data, tree) is a function of obtaining the estimator of Faith's PD based on abundance data.
 #' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages can be any positive integer.
-#' @param tree is in the Newick format of the phylogenetic tree spanned by the observed species in data.
+#' @param tree is in the Newick format of the phylogenetic tree spanned by all the observed species in data.
 #' @return the Chao1-PD estimate and its 95% confidence interval.
 
 PD <- function(data, tree) {
@@ -155,14 +155,14 @@ PD <- function(data, tree) {
 
 ############################################################################################
 #
-# (4).  R function for estimating shared PD between two assemblages: Shared_PD(data, tree)
+# (4).  R function for estimating the shared PD between two assemblages: Shared_PD(data, tree)
 #
 ############################################################################################
 
-#' Shared PD between two assemblages
-#' Shared_PD(data, tree) is a function of obtaining estimator of shared PD between two assemblages based on abundance data.
+#' Estimating the shared PD between two assemblages
+#' Shared_PD(data, tree) is a function of obtaining the estimator of shared PD between two assemblages based on abundance data.
 #' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages must be two.
-#' @param tree is in the Newick format of the phylogenetic tree spanned by the observed species in data.
+#' @param tree is in the Newick format of the phylogenetic tree spanned by all the observed species in data.
 #' @return the Chao1-PD-shared estimate and its 95% confidence interval.
 
 Shared_PD=function(data, tree){
@@ -217,14 +217,14 @@ Shared_PD=function(data, tree){
 
 #################################################################################
 #
-# (5).  R function for estimating FAD in one assemblage: FAD(data, dis_matrix)
+# (5).  R function for estimating FAD in each individual assemblage: FAD(data, dis_matrix)
 #
 #################################################################################
 
 #' Estimating FAD in one assemblage
-#' FAD(data, dis_matrix) is a function of obtaining estimator of FAD based on abundance data.
+#' FAD(data, dis_matrix) is a function of obtaining the estimator of FAD based on abundance data.
 #' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages can be any positive integer.
-#' @param dis_matrix is functional distance matrix of pairs of observed species.
+#' @param dis_matrix is a functional distance matrix for all pairs of the observed species.
 #' @return the Chao1-FAD estimate and its 95% confidence interval.
 
 FAD <- function(data, dis_matrix) {
@@ -277,10 +277,10 @@ FAD <- function(data, dis_matrix) {
 #
 ##################################################################################################
 
-#' Estimating shared FAD between two assemblages
-#' Shared_FAD(data, dis_matrix) is a function of obtaining estimator of shared FAD between two assemblages based on abundance data.
+#' Estimating the shared FAD between two assemblages
+#' Shared_FAD(data, dis_matrix) is a function of obtaining the estimator of shared FAD between two assemblages based on abundance data.
 #' @param data is an observed species-by-assemblage frequency matrix. The number of assemblages must be two.
-#' @param dis_matrix is functional distance matrix of all pairs of observed species.
+#' @param dis_matrix is a functional distance matrix of all pairs of the observed species.
 #' @return the Chao1-FAD-shared estimate and its 95% confidence interval.
 
 Shared_FAD=function(data,dis_matrix){
