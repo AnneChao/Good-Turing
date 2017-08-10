@@ -86,7 +86,7 @@ Shared_richness <- function(data){
   for(i in 1:6){
     COV[i,i]=fii[i]*(1-fii[i]/s12)
     for(j in (i+1):7){
-      COV[i,j]=-fii[i]*fii[j]/s12;COV[i,j]=COV[j,i]}
+      COV[i,j]=-fii[i]*fii[j]/s12;COV[j,i]=COV[i,j]}
   }
   V=t(df)%*%COV%*%df
   R=exp(1.96*(log(1+V/(us12)^2))^(1/2))
@@ -200,7 +200,7 @@ Shared_PD=function(data, tree){
   for(i in 1:6){
     COV[i,i]=gii[i]*(1-gii[i]/spd12);
     for(j in (i+1):7){
-      COV[i,j]=-gii[i]*gii[j]/spd12;COV[i,j]=COV[j,i];}
+      COV[i,j]=-gii[i]*gii[j]/spd12;COV[j,i]=COV[i,j];}
   }
   V=t(dg)%*%COV%*%dg;
   R=exp(1.96*(log(1+V/(upd12)^2))^(1/2));
@@ -248,7 +248,7 @@ FAD <- function(data, dis_matrix) {
     for(i in 1:6){
       COV[i,i]=Fii[i]*(1-Fii[i]/fd);
       for(j in (i+1):7){
-        COV[i,j]=-Fii[i]*Fii[j]/fd;COV[i,j]=COV[j,i];}
+        COV[i,j]=-Fii[i]*Fii[j]/fd;COV[j,i]=COV[i,j];}
     }
     V=t(dF)%*%COV%*%dF;
     R=exp(1.96*(log(1+V/(ufd)^2))^(1/2));
